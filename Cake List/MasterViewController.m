@@ -20,7 +20,7 @@ NSString* const cakeCellIdentifier = @"CakeCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getData];
+//    [self getData];
 }
 
 #pragma mark - Table View
