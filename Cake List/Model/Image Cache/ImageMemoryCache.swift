@@ -67,7 +67,7 @@ import Foundation
             self.cahce[from] = image
             delegate?.imageCacheChanged(imageCahce: self, imageURL: from, image: image)
         } else {
-            self.cahce[from] = nil
+            self.cahce[from] = UIImage(named: "default-image")
         }
     }
 }
