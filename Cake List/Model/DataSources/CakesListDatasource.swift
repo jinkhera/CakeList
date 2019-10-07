@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-@objc class CakesDatasource: NSObject, UITableViewDataSource {
+@objc class CakesDatasource: NSObject, UITableViewDataSource, ImageCacheDelegate {
+    
+    
     // MARK: - Types
     
     struct CellIdentifiers {
@@ -19,10 +21,20 @@ import UIKit
     // MARK: - vars
     var cakes = [Cake]()
     
+    var imageCache: ImageCache?
+    
     // MARK: initialiser
     required init(tableView: UITableView, cakes: [Cake]) {
         super.init()
         self.cakes = cakes
+        configure(tableView: tableView)
+    }
+    
+    required init(tableView: UITableView, cakes: [Cake], imageCache: ImageCache) {
+        super.init()
+        self.cakes = cakes
+        self.imageCache = imageCache
+        self.imageCache?.delegate = self
         configure(tableView: tableView)
     }
     
@@ -50,13 +62,22 @@ import UIKit
         cell.titleLabel.text = cake.title
         cell.descriptionLabel.text = cake.desc
         
-        let url = cake.image
-        cell.cakeImageView.image = nil
-        if let data = try? Data(contentsOf: url) {
-            let image = UIImage(data: data)
-            cell.cakeImageView.image = image
-        }
+//        let url = cake.image
+//        cell.cakeImageView.image = nil
+//        if let data = try? Data(contentsOf: url) {
+//            let image = UIImage(data: data)
+//            cell.cakeImageView.image = image
+//        }
         
         return cell
+    }
+    
+    // MARK: - ImageCacheDelegate
+    func imageCacheChanged(imageCahce: ImageCache, imageURL: URL) {
+        
+    }
+    
+    func imageCacheChanged(imageCahce: ImageCache, imageURL: URL, image: UIImage?) {
+        
     }
 }
