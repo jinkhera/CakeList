@@ -19,6 +19,7 @@
 		65B60EA3234B81CA00F4DE01 /* ImageMemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B60EA2234B81CA00F4DE01 /* ImageMemoryCache.swift */; };
 		65B60EA6234B840100F4DE01 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B60EA5234B840100F4DE01 /* Downloader.swift */; };
 		65B60EA8234B8AB100F4DE01 /* Cake_List_ImageCache_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B60EA7234B8AB100F4DE01 /* Cake_List_ImageCache_Tests.swift */; };
+		65DE4AD8234BD18C005F5583 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DE4AD7234BD18C005F5583 /* UIImage+Size.swift */; };
 		DBF17A171B0B648F004E6311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A161B0B648F004E6311 /* main.m */; };
 		DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A191B0B648F004E6311 /* AppDelegate.m */; };
 		DBF17A1D1B0B648F004E6311 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBF17A1C1B0B648F004E6311 /* MasterViewController.m */; };
@@ -53,6 +54,7 @@
 		65B60EA2234B81CA00F4DE01 /* ImageMemoryCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMemoryCache.swift; sourceTree = "<group>"; };
 		65B60EA5234B840100F4DE01 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		65B60EA7234B8AB100F4DE01 /* Cake_List_ImageCache_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cake_List_ImageCache_Tests.swift; sourceTree = "<group>"; };
+		65DE4AD7234BD18C005F5583 /* UIImage+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 		DBF17A111B0B648F004E6311 /* Cake List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cake List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF17A151B0B648F004E6311 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF17A161B0B648F004E6311 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		6587B3E2234B4FD000C4E8AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				65DE4AD6234BD173005F5583 /* Extension */,
 				65B60EA4234B836500F4DE01 /* Downloader */,
 				65B60E9F234B758900F4DE01 /* Image Cache */,
 				65B60E9C234B709300F4DE01 /* DataSources */,
@@ -158,6 +161,14 @@
 				65B60EA5234B840100F4DE01 /* Downloader.swift */,
 			);
 			path = Downloader;
+			sourceTree = "<group>";
+		};
+		65DE4AD6234BD173005F5583 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				65DE4AD7234BD18C005F5583 /* UIImage+Size.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		DBF17A081B0B648F004E6311 = {
@@ -349,6 +360,7 @@
 				6587B3F2234B584500C4E8AF /* Cake.swift in Sources */,
 				DBF17A1A1B0B648F004E6311 /* AppDelegate.m in Sources */,
 				6587B3F5234B58BE00C4E8AF /* CakesDecoder.swift in Sources */,
+				65DE4AD8234BD18C005F5583 /* UIImage+Size.swift in Sources */,
 				DBF17A3F1B0B8E16004E6311 /* CakeCell.m in Sources */,
 				65B60EA1234B759E00F4DE01 /* ImageCache.swift in Sources */,
 				65B60EA6234B840100F4DE01 /* Downloader.swift in Sources */,

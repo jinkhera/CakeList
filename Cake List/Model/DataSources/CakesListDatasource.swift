@@ -61,7 +61,8 @@ import UIKit
         cell.titleLabel.text = cake.title
         cell.descriptionLabel.text = cake.desc
         
-        imageCache?.imageForURL(cake.image, completion: { (image) in
+        
+        imageCache?.imageForURL(cake.image, resizeTo: Double(cell.cakeImageView.frame.width), completion: { (image) in
             cell.cakeImageView.image = image
         })
         

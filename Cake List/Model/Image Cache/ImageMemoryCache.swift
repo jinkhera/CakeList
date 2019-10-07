@@ -9,9 +9,10 @@
 import Foundation
 
 @objc class ImageMemoryCache: NSObject, ImageCache, DownloaderDelegate {
-   
+
     // MARK: - vars
     lazy private var cahce = [URL: UIImage?]()
+    lazy private var imageSizes = [URL: Double]()
     
     private var downloader: Downloader?
     
@@ -42,10 +43,16 @@ import Foundation
         downloader?.queueURL(url)
     }
     
-    // MARK: - ImageCache
-    func imageForURL(_ url: URL, atIndexPath indexPath: IndexPath, completion: @escaping (UIImage?) -> ()) {
+    func imageForURL(_ url: URL, resizeTo width: Double, completion: @escaping (UIImage?) -> ()) {
+        self.imageSizes[url] = width
         if let image = self.cahce[url] {
             completion(image)
+            return
+        }
+        
+        // failed image download
+        if self.cahce.keys.contains(url) {
+            completion(nil)
             return
         }
         
@@ -64,7 +71,13 @@ import Foundation
     // MARK: - DownloaderDelegate
     func downloader(didDownload from: URL, downloadData data: Data?) {
         if let image = UIImage(data: data!) {
-            self.cahce[from] = image
+            if let newWidth = self.imageSizes[from], newWidth > 0 {
+                let image = image.resize(newWidth: CGFloat(newWidth))
+                self.cahce[from] = image
+            } else {
+                self.cahce[from] = image
+            }
+            
             delegate?.imageCacheChanged(imageCahce: self, imageURL: from, image: image)
         } else {
             self.cahce[from] = UIImage(named: "default-image")

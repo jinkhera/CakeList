@@ -10,6 +10,7 @@ import Foundation
 
 @objc protocol ImageCache {
     func imageForURL(_ url: URL, completion: @escaping (UIImage?) -> ())
+    func imageForURL(_ url: URL, resizeTo width: Double, completion: @escaping (UIImage?) -> ())
     func isImageChached(_ url: URL) -> Bool
     func purge()
     
