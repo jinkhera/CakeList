@@ -11,7 +11,6 @@ import UIKit
 
 @objc class CakesDatasource: NSObject, UITableViewDataSource, ImageCacheDelegate {
     
-    
     // MARK: - Types
     
     struct CellIdentifiers {
@@ -21,10 +20,10 @@ import UIKit
     // MARK: - vars
     var cakes = [Cake]()
     
-    var imageCache: ImageCache?
+    @objc var imageCache: ImageCache?
     
     // MARK: initialiser
-    required init(tableView: UITableView, cakes: [Cake]) {
+    init(tableView: UITableView, cakes: [Cake]) {
         super.init()
         self.cakes = cakes
         configure(tableView: tableView)
@@ -62,12 +61,9 @@ import UIKit
         cell.titleLabel.text = cake.title
         cell.descriptionLabel.text = cake.desc
         
-//        let url = cake.image
-//        cell.cakeImageView.image = nil
-//        if let data = try? Data(contentsOf: url) {
-//            let image = UIImage(data: data)
-//            cell.cakeImageView.image = image
-//        }
+        imageCache?.imageForURL(cake.image, completion: { (image) in
+            cell.cakeImageView.image = image
+        })
         
         return cell
     }

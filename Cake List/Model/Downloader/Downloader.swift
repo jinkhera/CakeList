@@ -12,7 +12,7 @@ protocol DownloaderDelegate {
     func downloader(didDownload from: URL, downloadData Data: Data?)
 }
 
-class Downloader {
+@objc class Downloader: NSObject {
     // MARK: - vars
     static let shared = Downloader()
     
@@ -31,7 +31,8 @@ class Downloader {
     var delegate: DownloaderDelegate?
     
     // MARK: - Initialisation
-    private init() {
+    private override init() {
+        super.init()
         operationQueue.maxConcurrentOperationCount = 3
     }
     

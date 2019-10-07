@@ -23,7 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _dataSource = [[CakesDatasource alloc] initWithTableView:self.tableView cakes:[[NSArray<Cake*> alloc] init]];
+    _dataSource = [[CakesDatasource alloc] initWithTableView:self.tableView cakes:[[NSArray<Cake *> alloc] init]];
+    ImageMemoryCache* cache = [[ImageMemoryCache alloc] initWithDownloader:[Downloader shared]];
+    _dataSource.imageCache = cache;
     [self getData];
 }
 

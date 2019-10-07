@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ImageMemoryCache: ImageCache, DownloaderDelegate {
+@objc class ImageMemoryCache: NSObject, ImageCache, DownloaderDelegate {
    
     // MARK: - vars
     lazy private var cahce = [URL: UIImage?]()
@@ -19,6 +19,7 @@ class ImageMemoryCache: ImageCache, DownloaderDelegate {
     
     // MARK: - initialisation
     init(downloader: Downloader) {
+        super.init()
         self.downloader = downloader
         self.downloader?.delegate = self
         self.downloader?.start()
@@ -28,6 +29,12 @@ class ImageMemoryCache: ImageCache, DownloaderDelegate {
     func imageForURL(_ url: URL, completion: @escaping (UIImage?) -> ()) {
         if let image = self.cahce[url] {
             completion(image)
+            return
+        }
+        
+        // failed image download
+        if self.cahce.keys.contains(url) {
+            completion(nil)
             return
         }
         

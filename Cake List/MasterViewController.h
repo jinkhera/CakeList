@@ -10,6 +10,8 @@
 
 @class CakeList;
 @class CakesDatasource;
+@class ImageMemoryCache;
+@class Downloader;
 
 @interface MasterViewController : UITableViewController
 

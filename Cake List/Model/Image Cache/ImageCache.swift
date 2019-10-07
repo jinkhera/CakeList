@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ImageCache {
+@objc protocol ImageCache {
     func imageForURL(_ url: URL, completion: @escaping (UIImage?) -> ())
     func isImageChached(_ url: URL) -> Bool
     func purge()
@@ -16,7 +16,7 @@ protocol ImageCache {
     var delegate: ImageCacheDelegate? { get set }
 }
 
-protocol ImageCacheDelegate {
+@objc protocol ImageCacheDelegate {
     func imageCacheChanged(imageCahce: ImageCache, imageURL: URL)
     func imageCacheChanged(imageCahce: ImageCache, imageURL: URL, image: UIImage?)
 }
