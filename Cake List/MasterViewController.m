@@ -11,7 +11,10 @@
 
 @interface MasterViewController ()
 @property (strong, nonatomic) NSArray *objects;
+
 @end
+
+NSString* const cakeCellIdentifier = @"CakeCell";
 
 @implementation MasterViewController
 
@@ -30,7 +33,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:cakeCellIdentifier];
     
     NSDictionary *object = self.objects[indexPath.row];
     cell.titleLabel.text = object[@"title"];
