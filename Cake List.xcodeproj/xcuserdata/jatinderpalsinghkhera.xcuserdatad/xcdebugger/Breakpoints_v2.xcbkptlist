@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cake ListTests/Cake_List_ImageCache_Tests.swift"
-            timestampString = "592156785.9002171"
+            filePath = "Cake List/Model/Image Cache/ImageMemoryCache.swift"
+            timestampString = "592168028.7171299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "imageCacheChanged(imageCahce:imageURL:)"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "downloader(didDownload:downloadData:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,7 +11,7 @@ import Foundation
 class ImageMemoryCache: ImageCache, DownloaderDelegate {
    
     // MARK: - vars
-    lazy private var cahce = [URL: UIImage]()
+    lazy private var cahce = [URL: UIImage?]()
     
     private var downloader: Downloader?
     
@@ -59,6 +59,8 @@ class ImageMemoryCache: ImageCache, DownloaderDelegate {
         if let image = UIImage(data: data!) {
             self.cahce[from] = image
             delegate?.imageCacheChanged(imageCahce: self, imageURL: from, image: image)
+        } else {
+            self.cahce[from] = nil
         }
     }
 }

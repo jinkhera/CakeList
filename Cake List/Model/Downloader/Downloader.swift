@@ -37,7 +37,15 @@ class Downloader {
     
     // MARK: - Public methods
     func queueURL(_ url: URL) {
-        queue.enqueue(url)
+        if queue.items().contains(where: { (u) -> Bool in
+            u == url
+        }) || synchingQueue.contains(where: { (u) -> Bool in
+            u == url
+        }){
+            print("url already queue \(url)")
+        } else {
+            queue.enqueue(url)
+        }
     }
     
     func pause() {
@@ -120,6 +128,10 @@ struct Queue<T> {
     
     func isEmpty() -> Bool {
         return queue.count == 0
+    }
+    
+    func items() -> [T] {
+        return queue
     }
 }
 

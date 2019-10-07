@@ -56,6 +56,7 @@ class Cake_List_ImageCache_Tests: XCTestCase, ImageCacheDelegate {
         imageURLS.append(URL(string: "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--1001468_10.jpg")!)
         imageURLS.append(URL(string: "http://www.villageinn.com/i/pies/profile/carrotcake_main1.jpg")!)
         imageURLS.append(URL(string: "http://ukcdn.ar-cdn.com/recipes/xlarge/ff22df7f-dbcd-4a09-81f7-9c1d8395d936.jpg")!)
+        imageURLS.append(URL(string: "http://www.bbcgoodfood.com/sites/bbcgoodfood.com/files/recipe_images/recipe-image-legacy-id--1001468_10.jpg")!)
         
         let memoryImageCache = ImageMemoryCache(downloader: Downloader.shared)
         memoryImageCache.delegate = self
@@ -75,13 +76,13 @@ class Cake_List_ImageCache_Tests: XCTestCase, ImageCacheDelegate {
     // MARK: - ImageCacheDelegate
     func imageCacheChanged(imageCahce: ImageCache, imageURL: URL) {
         // Fulfill the expectation to indicate that the background task has finished successfully.
-        if count == 3 {
+        if count == 4 {
             expectation.fulfill()
         }
     }
     
     func imageCacheChanged(imageCahce: ImageCache, imageURL: URL, image: UIImage?) {
-        if count == 3 {
+        if count == 4 {
             count += 1
             expectation.fulfill()
         }
