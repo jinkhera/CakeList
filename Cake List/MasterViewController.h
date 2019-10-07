@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class CakeList;
+@class CakesDatasource;
 
 @interface MasterViewController : UITableViewController
 
