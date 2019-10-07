@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class CakeList;
+
 @interface MasterViewController : UITableViewController
 
 

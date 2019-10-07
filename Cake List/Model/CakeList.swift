@@ -8,15 +8,17 @@
 
 import Foundation
 
-struct CakeList {
+@objc class CakeList: NSObject {
     
 }
 
 extension CakeList {
-    static func loadCakes(_ completion: @escaping ([Cake]?, APIError?) -> ()) {
+    // ideally we want to return an error as part of the completion. Enum in swift
+    // is not exposed to Objec-C, needs refacctor
+    @objc static func loadCakes(_ completion: @escaping ([Cake]?) -> ()) {
         CakeAPI.get(endpoint: "cake.json", type: [Cake].self) { (cakes, error) in
             // TODO: - Store locally in core data, sqlite, etc.....
-            completion(cakes, error)
+            completion(cakes)
         }
     }
 }

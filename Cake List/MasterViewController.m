@@ -9,8 +9,10 @@
 #import "MasterViewController.h"
 #import "CakeCell.h"
 
+#import <Cake_List-Swift.h>
+
 @interface MasterViewController ()
-@property (strong, nonatomic) NSArray *objects;
+@property (strong, nonatomic) NSArray<Cake*> *objects;
 
 @end
 
@@ -20,7 +22,7 @@ NSString* const cakeCellIdentifier = @"CakeCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self getData];
+    [self getData];
 }
 
 #pragma mark - Table View
@@ -35,12 +37,12 @@ NSString* const cakeCellIdentifier = @"CakeCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CakeCell *cell = (CakeCell*)[tableView dequeueReusableCellWithIdentifier:cakeCellIdentifier];
     
-    NSDictionary *object = self.objects[indexPath.row];
-    cell.titleLabel.text = object[@"title"];
-    cell.descriptionLabel.text = object[@"desc"];
+    Cake *cake = self.objects[indexPath.row];
+    cell.titleLabel.text = cake.title;
+    cell.descriptionLabel.text = cake.desc;
  
     
-    NSURL *aURL = [NSURL URLWithString:object[@"image"]];
+    NSURL *aURL = cake.image;
     NSData *data = [NSData dataWithContentsOfURL:aURL];
     UIImage *image = [UIImage imageWithData:data];
     [cell.cakeImageView setImage:image];
@@ -54,21 +56,13 @@ NSString* const cakeCellIdentifier = @"CakeCell";
 
 - (void)getData{
     
-    NSURL *url = [NSURL URLWithString:@"https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json"];
-    
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    NSError *jsonError;
-    id responseData = [NSJSONSerialization
-                       JSONObjectWithData:data
-                       options:kNilOptions
-                       error:&jsonError];
-    if (!jsonError){
-        self.objects = responseData;
-        [self.tableView reloadData];
-    } else {
-    }
-    
+    [CakeList loadCakes:^(NSArray<Cake *> * cakes) {
+        // make sure we are back on the main/ui thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.objects = cakes;
+            [self.tableView reloadData];
+        });
+    }];
 }
 
 @end
