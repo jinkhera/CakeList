@@ -18,6 +18,7 @@ import UIKit
     }
     
     // MARK: - vars
+    private weak var tableView: UITableView?
     var cakes = [Cake]()
     
     @objc var imageCache: ImageCache?
@@ -26,14 +27,7 @@ import UIKit
     init(tableView: UITableView, cakes: [Cake]) {
         super.init()
         self.cakes = cakes
-        configure(tableView: tableView)
-    }
-    
-    required init(tableView: UITableView, cakes: [Cake], imageCache: ImageCache) {
-        super.init()
-        self.cakes = cakes
-        self.imageCache = imageCache
-        self.imageCache?.delegate = self
+        self.tableView = tableView
         configure(tableView: tableView)
     }
     
@@ -61,7 +55,6 @@ import UIKit
         cell.titleLabel.text = cake.title
         cell.descriptionLabel.text = cake.desc
         
-        
         imageCache?.imageForURL(cake.image, resizeTo: Double(cell.cakeImageView.frame.width), completion: { (image) in
             cell.cakeImageView.image = image
         })
@@ -75,6 +68,17 @@ import UIKit
     }
     
     func imageCacheChanged(imageCahce: ImageCache, imageURL: URL, image: UIImage?) {
+        let updatableCakes = self.cakes.filter { (c) -> Bool in
+            c.image == imageURL
+        }
         
+        let indexPaths = updatableCakes.map { (c) -> IndexPath in
+            let index = self.cakes.index(of: c)
+            return IndexPath(item: index!, section: 0)
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView?.reloadRows(at: indexPaths, with: UITableViewRowAnimation.automatic)
+        }
     }
 }

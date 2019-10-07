@@ -26,6 +26,7 @@
     _dataSource = [[CakesDatasource alloc] initWithTableView:self.tableView cakes:[[NSArray<Cake *> alloc] init]];
     ImageMemoryCache* cache = [[ImageMemoryCache alloc] initWithDownloader:[Downloader shared]];
     _dataSource.imageCache = cache;
+    _dataSource.imageCache.delegate = _dataSource;
     [self getData];
 }
 
